@@ -77,6 +77,10 @@ endef
 .PHONY: all
 all: $(BUILD_DIR)/$(TARGET).hex
 
+.PHONY: size
+size: $(BUILD_DIR)/$(TARGET).hex
+	@$(worker_path)/size.sh $(BUILD_DIR)/$(TARGET).map
+
 $(BUILD_DIR)/arm-none-eabi-gdb:
 	@mkdir -p $(dir $@)
 	@-ln -s $(binutils_path)/stm8-gdb $@
