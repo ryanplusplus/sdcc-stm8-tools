@@ -49,6 +49,7 @@ ASFLAGS += \
 
 CFLAGS += \
   -mstm8 \
+  --nolospre \
   --debug \
   --Werror \
   --std-c99 \
