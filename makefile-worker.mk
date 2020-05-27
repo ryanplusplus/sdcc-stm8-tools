@@ -1,3 +1,5 @@
+C_STANDARD ?= c11
+
 worker_path := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 tools_path := $(worker_path)tools/$(shell uname)
 toolchain_path := $(tools_path)/sdcc-$(TOOLCHAIN_VERSION)
@@ -52,7 +54,7 @@ CFLAGS += \
   --nolospre \
   --debug \
   --Werror \
-  --std-c99 \
+  --std-$(C_STANDARD) \
   --disable-warning 126 \
   $(INC_FLAGS) \
   $(DEFINE_FLAGS) \
