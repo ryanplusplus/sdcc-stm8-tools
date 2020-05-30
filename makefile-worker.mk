@@ -2,6 +2,7 @@ C_STANDARD ?= c11
 
 worker_path := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 tools_path := $(worker_path)tools/$(shell uname)
+docs_mk_path := $(worker_path)docs.mk
 toolchain_path := $(tools_path)/sdcc-$(TOOLCHAIN_VERSION)
 stm8flash_path := $(tools_path)/stm8flash/bin
 binutils_path := $(tools_path)/stm8-binutils-gdb/bin
@@ -167,6 +168,8 @@ $(BUILD_DIR)/%.c.debug.rel: %.c
 clean:
 	@echo Cleaning...
 	@$(RM) -rf $(BUILD_DIR)
+
+include $(docs_mk_path)
 
 -include $(DEPS) $(DEBUG_DEPS) $(LIB_DEPS) $(DEBUG_LIB_DEPS)
 -include $(BUILD_DIR)/$(TARGET).hex.d
