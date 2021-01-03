@@ -85,11 +85,11 @@ all: $(BUILD_DIR)/$(TARGET).hex
 size: $(BUILD_DIR)/$(TARGET).hex
 	@$(worker_path)/size.sh $(BUILD_DIR)/$(TARGET).map
 
-$(BUILD_DIR)/arm-none-eabi-gdb:
+$(BUILD_DIR)/stm8-gdb:
 	@mkdir -p $(dir $@)
 	@-ln -s $(binutils_path)/stm8-gdb $@
 
-$(BUILD_DIR)/arm-none-eabi-objdump:
+$(BUILD_DIR)/stm8-objdump:
 	@mkdir -p $(dir $@)
 	@-ln -s $(binutils_path)/stm8-objdump $@
 
@@ -101,12 +101,12 @@ $(BUILD_DIR)/openocd.cfg:
 	@cp $(OPENOCD_CFG) $@
 
 .PHONY: debug-deps
-debug-deps: erase $(BUILD_DIR)/$(TARGET)-debug.elf $(BUILD_DIR)/arm-none-eabi-gdb $(BUILD_DIR)/arm-none-eabi-objdump $(BUILD_DIR)/openocd $(BUILD_DIR)/openocd.cfg
+debug-deps: erase $(BUILD_DIR)/$(TARGET)-debug.elf  $(BUILD_DIR)/stm8-gdb $(BUILD_DIR)/stm8-objdump $(BUILD_DIR)/openocd $(BUILD_DIR)/openocd.cfg
 
 .PHONY: debug
 debug: debug-deps
 	@echo "target extended-remote | $(BUILD_DIR)/openocd/bin/openocd -c \"gdb_port pipe\" -f $(BUILD_DIR)/openocd.cfg\nlayout asm\nlayout regs\nwinheight regs 12\nwinheight asm 50\nload\nbreak main\ncontinue" > $(BUILD_DIR)/.gdbinit
-	@$(BUILD_DIR)/arm-none-eabi-gdb $(BUILD_DIR)/$(TARGET)-debug.elf --tui -x $(BUILD_DIR)/.gdbinit
+	@$(BUILD_DIR)/stm8-gdb $(BUILD_DIR)/$(TARGET)-debug.elf --tui -x $(BUILD_DIR)/.gdbinit
 
 .PHONY: upload
 upload: $(BUILD_DIR)/$(TARGET).hex

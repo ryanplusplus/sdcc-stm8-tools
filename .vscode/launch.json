@@ -14,6 +14,7 @@
       "serverpath": "${workspaceFolder}/build/openocd/bin/openocd",
       "runToMain": true,
       "armToolchainPath": "${workspaceRoot}/build",
+      "toolchainPrefix": "stm8",
       "configFiles": [
         "${workspaceRoot}/build/target/openocd.cfg"
       ],
