@@ -66,8 +66,10 @@ CFLAGS += \
 LDFLAGS += \
   --nostdlib \
   --lib-path $(lib_path) \
-  -lstm8 \
   $(CFLAGS) \
+
+LDLIBS += \
+  -lstm8 \
 
 CC := $(bin_path)/sdcc
 AS := $(bin_path)/sdasstm8
@@ -125,17 +127,17 @@ TARGET_HEX_DEPS := $(MAIN) $(OBJS) $(BUILD_DIR)/$(TARGET).lib
 $(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS)
 	@echo Linking $(notdir $@)...
 	@mkdir -p $(dir $@)
-	@$(LD) $(LDFLAGS) -MM --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@.d
+	@$(LD) $(LDFLAGS) -MM --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@.d $(LDLIBS)
 	@$(call fix_deps,[^:]*,$@.d)
-	@$(LD) $(LDFLAGS) --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@
+	@$(LD) $(LDFLAGS) --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@ $(LDLIBS)
 
 TARGET_DEBUG_ELF_DEPS := $(MAIN) $(DEBUG_OBJS) $(BUILD_DIR)/$(TARGET)-debug.lib
 $(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS)
 	@echo Linking $(notdir $@)...
 	@mkdir -p $(dir $@)
-	@$(LD) $(LDFLAGS) -MM --out-fmt-elf $(TARGET_DEBUG_ELF_DEPS) -o $@.d
+	@$(LD) $(LDFLAGS) -MM --out-fmt-elf $(TARGET_DEBUG_ELF_DEPS) -o $@.d $(LDLIBS)
 	@$(call fix_deps,[^:]*,$@.d)
-	@$(LD) $(LDFLAGS) --out-fmt-elf $(TARGET_DEBUG_ELF_DEPS) -o $@
+	@$(LD) $(LDFLAGS) --out-fmt-elf $(TARGET_DEBUG_ELF_DEPS) -o $@ $(LDLIBS)
 
 $(BUILD_DIR)/$(TARGET).lib: $(LIB_OBJS)
 	@echo Building $(notdir $@)...
