@@ -10,6 +10,8 @@ openocd_path := $(tools_path)/openocd
 bin_path := $(toolchain_path)/bin
 lib_path := $(toolchain_path)/share/sdcc/lib/stm8
 
+COMPILE_DEPS += $(MAKEFILE_LIST)
+
 DEFINES += $(DEVICE_TYPE)
 
 SRCS := $(SRC_FILES)
@@ -145,24 +147,24 @@ $(BUILD_DIR)/$(TARGET)-debug.lib: $(DEBUG_LIB_OBJS)
 	@mkdir -p $(dir $@)
 	@$(AR) -rc $@ $(DEBUG_LIB_OBJS)
 
-$(BUILD_DIR)/%.s.rel: %.s
+$(BUILD_DIR)/%.s.rel: %.s $(COMPILE_DEPS)
 	@echo Assembling $(notdir $@)...
 	@mkdir -p $(dir $@)
 	@$(AS) $(ASFLAGS) $@ $<
 
-$(BUILD_DIR)/%.s.debug.rel: %.s
+$(BUILD_DIR)/%.s.debug.rel: %.s $(COMPILE_DEPS)
 	@echo Assembling $(notdir $@)...
 	@mkdir -p $(dir $@)
 	@$(AS) $(ASFLAGS) $@ $<
 
-$(BUILD_DIR)/%.c.rel: %.c
+$(BUILD_DIR)/%.c.rel: %.c $(COMPILE_DEPS)
 	@echo Compiling $(notdir $@)...
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -MM -c $< -o $(@:%.rel=%.d)
 	@$(call fix_deps,$(notdir $(@:%.c.rel=%.rel)),$(@:%.rel=%.d))
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(BUILD_DIR)/%.c.debug.rel: %.c
+$(BUILD_DIR)/%.c.debug.rel: %.c $(COMPILE_DEPS)
 	@echo Compiling $(notdir $@)...
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -MM -c $< -o $(@:%.rel=%.d)
