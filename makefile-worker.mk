@@ -101,11 +101,11 @@ $(BUILD_DIR)/openocd:
 	@mkdir -p $(dir $@)
 	@-ln -s $(openocd_path) $@
 
-$(BUILD_DIR)/openocd.cfg:
+$(BUILD_DIR)/openocd.cfg: $(BUILD_DEPS)
 	@cp $(OPENOCD_CFG) $@
 
 .PHONY: debug-deps
-debug-deps: erase $(BUILD_DIR)/$(TARGET)-debug.elf  $(BUILD_DIR)/stm8-gdb $(BUILD_DIR)/stm8-objdump $(BUILD_DIR)/openocd $(BUILD_DIR)/openocd.cfg
+debug-deps: erase $(BUILD_DIR)/$(TARGET)-debug.elf $(BUILD_DIR)/stm8-gdb $(BUILD_DIR)/stm8-objdump $(BUILD_DIR)/openocd $(BUILD_DIR)/openocd.cfg
 
 .PHONY: debug
 debug: debug-deps
@@ -124,7 +124,7 @@ erase:
 	@$(stm8flash_path)/stm8flash -c $(STLINK) -p $(DEVICE) -u
 
 TARGET_HEX_DEPS := $(MAIN) $(OBJS) $(BUILD_DIR)/$(TARGET).lib
-$(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS)
+$(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS) $(BUILD_DEPS)
 	@echo Linking $(notdir $@)...
 	@mkdir -p $(dir $@)
 	@$(LD) $(LDFLAGS) -MM --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@.d $(LDLIBS)
@@ -132,7 +132,7 @@ $(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS)
 	@$(LD) $(LDFLAGS) --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@ $(LDLIBS)
 
 TARGET_DEBUG_ELF_DEPS := $(MAIN) $(DEBUG_OBJS) $(BUILD_DIR)/$(TARGET)-debug.lib
-$(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS)
+$(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS)
 	@echo Linking $(notdir $@)...
 	@mkdir -p $(dir $@)
 	@$(LD) $(LDFLAGS) -MM --out-fmt-elf $(TARGET_DEBUG_ELF_DEPS) -o $@.d $(LDLIBS)
