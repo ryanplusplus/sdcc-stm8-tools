@@ -59,6 +59,7 @@ CFLAGS += \
   --Werror \
   --std-$(C_STANDARD) \
   --disable-warning 126 \
+  --disable-warning 110 \
   $(INC_FLAGS) \
   $(DEFINE_FLAGS) \
   --opt-code-size \
