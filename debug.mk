@@ -18,7 +18,14 @@ $(BUILD_DIR)/$(TARGET).svd: $(SVD)
 	@cp $(SVD) $@
 
 .PHONY: debug-deps
-debug-deps: erase $(BUILD_DIR)/$(TARGET)-debug.elf $(BUILD_DIR)/stm8-gdb $(BUILD_DIR)/stm8-objdump $(BUILD_DIR)/openocd $(BUILD_DIR)/openocd.cfg
+debug-deps: \
+	erase \
+	$(BUILD_DIR)/$(TARGET)-debug.elf \
+	$(BUILD_DIR)/stm8-gdb \
+	$(BUILD_DIR)/stm8-objdump \
+	$(BUILD_DIR)/openocd \
+	$(BUILD_DIR)/openocd.cfg \
+	$(BUILD_DIR)/$(TARGET).svd
 
 .PHONY: debug
 debug: debug-deps
