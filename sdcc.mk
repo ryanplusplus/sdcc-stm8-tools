@@ -88,6 +88,7 @@ endef
 define generate_lib
 
 $(1)_INC_DIRS += $$($(1)_SRC_DIRS)
+$(1)_INC_DIRS += $(__sdcc_stm8_tools_path)lib/stm8/inc
 $(1)_INC_FLAGS := $$(addprefix -I,$$($(1)_INC_DIRS) $$($(1)_SYS_INC_DIRS))
 
 $(1)_CPPFLAGS := \
