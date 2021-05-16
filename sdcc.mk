@@ -25,19 +25,19 @@ CPPFLAGS := \
   $(CPPFLAGS) \
   $(addprefix -D,$(DEFINES)) \
 
-LIBS_DEPS := \
-  $(foreach _lib,$(LIBS),$(BUILD_DIR)/$(_lib).lib) \
-
-LDLIBS := \
-  $(LIBS_DEPS) \
-  $(LDLIBS) \
-  -lstm8 \
-
 DEBUG_LIBS_DEPS := \
   $(foreach _lib,$(LIBS),$(BUILD_DIR)/$(_lib)-debug.lib) \
 
 DEBUG_LDLIBS := \
   $(DEBUG_LIBS_DEPS) \
+  $(LDLIBS) \
+  -lstm8 \
+
+LIBS_DEPS := \
+  $(foreach _lib,$(LIBS),$(BUILD_DIR)/$(_lib).lib) \
+
+LDLIBS := \
+  $(LIBS_DEPS) \
   $(LDLIBS) \
   -lstm8 \
 
@@ -115,12 +115,7 @@ $$(BUILD_DIR)/$(1).lib: $$($1_LIB_OBJS)
 	@mkdir -p $$(dir $$@)
 	@$$(AR) rcs $$@ $$^
 
-$$(BUILD_DIR)/$$(1).lib: $$($1_LIB_OBJS)
-	@echo Building $$(notdir $$@)...
-	@mkdir -p $$(dir $$@)
-	@$$(AR) -rc $$@ $$^
-
-$(BUILD_DIR)/$(TARGET)-debug.lib: $$($1_DEBUG_LIB_OBJS)
+$$(BUILD_DIR)/$(1)-debug.lib: $$($1_DEBUG_LIB_OBJS)
 	@echo Building $$(notdir $$@)...
 	@mkdir -p $$(dir $$@)
 	@$$(AR) -rc $$@ $$^
@@ -133,21 +128,6 @@ endef
 all: $(BUILD_DIR)/$(TARGET).hex
 	@$(__sdcc_stm8_tools_path)size.sh $(BUILD_DIR)/$(TARGET).map
 
-$(BUILD_DIR)/stm8-gdb:
-	@mkdir -p $(dir $@)
-	@-ln -s $(__sdcc_stm8_tools_binutils_path)/stm8-gdb $@
-
-$(BUILD_DIR)/stm8-objdump:
-	@mkdir -p $(dir $@)
-	@-ln -s $(__sdcc_stm8_tools_binutils_path)/stm8-objdump $@
-
-$(BUILD_DIR)/openocd:
-	@mkdir -p $(dir $@)
-	@-ln -s $(__sdcc_stm8_tools_openocd_path) $@
-
-$(BUILD_DIR)/openocd.cfg: $(BUILD_DEPS)
-	@cp $(OPENOCD_CFG) $@
-
 $(foreach _lib,$(LIBS),$(eval $(call generate_lib,$(_lib))))
 
 TARGET_HEX_DEPS := $(MAIN) $(OBJS) $(LIBS_DEPS)
@@ -158,7 +138,7 @@ $(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS) $(BUILD_DEPS)
 	@$(call fix_deps,[^:]*,$@.d)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@ $(LDLIBS)
 
-TARGET_DEBUG_ELF_DEPS := $(MAIN) $(DEBUG_OBJS) $(DEBUG_LIB_DEPS)
+TARGET_DEBUG_ELF_DEPS := $(MAIN) $(DEBUG_OBJS) $(DEBUG_LIBS_DEPS)
 $(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS)
 	@echo Linking $(notdir $@)...
 	@mkdir -p $(dir $@)
