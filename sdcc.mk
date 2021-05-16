@@ -6,6 +6,8 @@ ifneq ($(SRC_DIRS),)
 SRCS += $(shell find $(SRC_DIRS) -maxdepth 1 -name *.cpp -or -name *.c -or -name *.s)
 endif
 
+SRCS := $(subst $(MAIN),,$(SRCS))
+
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.rel)
 DEPS := $(SRCS:%=$(BUILD_DIR)/%.d)
 
@@ -15,6 +17,7 @@ DEBUG_DEPS := $(SRCS:%=$(BUILD_DIR)/%.debug.d)
 DEPS += $(DEBUG_DEPS)
 
 INC_DIRS += $(SRC_DIRS)
+INC_DIRS += $(__sdcc_stm8_tools_path)lib/stm8/inc
 INC_FLAGS := $(addprefix -I,$(INC_DIRS) $(SYS_INC_DIRS))
 
 CPPFLAGS := \
