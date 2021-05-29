@@ -13,14 +13,14 @@ $(BUILD_DIR)/openocd:
 $(BUILD_DIR)/openocd.cfg: $(BUILD_DEPS)
 	@cp $(OPENOCD_CFG) $@
 
-ifdef $(SVD)
+ifdef SVD
 $(BUILD_DIR)/$(TARGET).svd: $(SVD)
 	@mkdir -p $(dir $@)
 	@cp $(SVD) $@
 else
 $(BUILD_DIR)/$(TARGET).svd:
 	@mkdir -p $(dir $@)
-	@rm $@
+	@rm $@ > /dev/null 2>&1 || true
 	@touch $@
 endif
 
