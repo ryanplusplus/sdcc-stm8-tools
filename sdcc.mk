@@ -163,7 +163,10 @@ ifneq ($(.SHELLSTATUS),0)
 $(shell mv $(BUILD_DIR)/build_deps.next $(BUILD_DIR)/build_deps)
 endif
 
-$(foreach _src,$(SRCS),$(eval $(call generate_build_rule,$(_src),$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_deps)))
+$(eval $(call generate_build_rule,%.s,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_deps))
+$(eval $(call generate_build_rule,%.S,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_deps))
+$(eval $(call generate_build_rule,%.c,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_deps))
+$(eval $(call generate_build_rule,%.cpp,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_deps))
 
 .PHONY: clean
 clean:
