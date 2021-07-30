@@ -52,35 +52,39 @@ define fix_deps
 	@grep -o ' [^ \:][^ \:]*' $2 | while read -r dep ; do echo "$$dep:\n" >> $2; done
 endef
 
-# $1 prefix
+# $1 filename
 # $2 ASFLAGS
 # $3 CPPFLAGS
 # $4 CFLAGS
-define generate_compilation_rules
+define generate_compilation_rule
 
-$$(BUILD_DIR)/$(1)%.s.rel: $(1)%.s $$(BUILD_DEPS)
+ifeq ($(suffix $(1)),.s)
+$$(BUILD_DIR)/$(1).rel: $(1) $$(BUILD_DEPS)
 	@echo Assembling $$(notdir $$@)...
 	@mkdir -p $$(dir $$@)
 	@$$(AS) $(2) $$@ $$<
 
-$$(BUILD_DIR)/$(1)%.s.debug.rel: $(1)%.s $$(BUILD_DEPS)
+$$(BUILD_DIR)/$(1).debug.rel: $(1) $$(BUILD_DEPS)
 	@echo Assembling $$(notdir $$@)...
 	@mkdir -p $$(dir $$@)
 	@$$(AS) $(2) $$@ $$<
+endif
 
-$$(BUILD_DIR)/$(1)%.c.rel: $(1)%.c $$(BUILD_DEPS)
+ifeq ($(suffix $(1)),.c)
+$$(BUILD_DIR)/$(1).rel: $(1) $$(BUILD_DEPS)
 	@echo Compiling $$(notdir $$@)...
 	@mkdir -p $$(dir $$@)
 	@$$(CC) $(3) $(4) -MM -c $$< -o $$(@:%.rel=%.d)
 	@$$(call fix_deps,$$(notdir $$(@:%.c.rel=%.rel)),$$(@:%.rel=%.d))
 	@$$(CC) $(3) $(4) -c $$< -o $$@
 
-$$(BUILD_DIR)/$(1)%.c.debug.rel: $(1)%.c $$(BUILD_DEPS)
+$$(BUILD_DIR)/$(1)debug.rel: $(1) $$(BUILD_DEPS)
 	@echo Compiling $$(notdir $$@)...
 	@mkdir -p $$(dir $$@)
 	@$$(CC) $(3) $(4) -MM -c $$< -o $$(@:%.rel=%.d)
 	@$$(call fix_deps,$$(notdir $$(@:%.c.debug.rel=%.rel)),$$(@:%.rel=%.d))
 	@$$(CC) $(3) $(4) -c $$< --out-fmt-elf -o $$@
+endif
 
 endef
 
@@ -120,7 +124,7 @@ $$(BUILD_DIR)/$(1)-debug.lib: $$($1_DEBUG_LIB_OBJS)
 	@mkdir -p $$(dir $$@)
 	@$$(AR) -rc $$@ $$^
 
-$$(eval $$(call generate_compilation_rules,$$($(1)_LIB_ROOT),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS)))
+$$(foreach _src,$$($(1)_LIB_SRCS),$$(eval $$(call generate_compilation_rule,$$(_src),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS),$$($(1)_CXXFLAGS))))
 
 endef
 
@@ -146,7 +150,7 @@ $(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS)
 	@$(call fix_deps,[^:]*,$@.d)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) --out-fmt-elf $(TARGET_DEBUG_ELF_DEPS) -o $@ $(DEBUG_LDLIBS)
 
-$(eval $(call generate_compilation_rules,,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(CXXFLAGS)))
+$(foreach _src,$(SRCS),$(eval $(call generate_compilation_rule,$(_src),$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(CXXFLAGS))))
 
 .PHONY: clean
 clean:
