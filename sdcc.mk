@@ -1,4 +1,7 @@
-BUILD_DEPS := $(BUILD_DEPS) $(MAKEFILE_LIST)
+CC := $(__sdcc_stm8_tools_bin_path)/sdcc
+AS := $(__sdcc_stm8_tools_bin_path)/sdasstm8
+LD := $(__sdcc_stm8_tools_bin_path)/sdcc
+AR := $(__sdcc_stm8_tools_bin_path)/sdar
 
 SRCS := $(SRC_FILES)
 
@@ -41,11 +44,6 @@ LDLIBS := \
   $(LDLIBS) \
   -lstm8 \
 
-CC := $(__sdcc_stm8_tools_bin_path)/sdcc
-AS := $(__sdcc_stm8_tools_bin_path)/sdasstm8
-LD := $(__sdcc_stm8_tools_bin_path)/sdcc
-AR := $(__sdcc_stm8_tools_bin_path)/sdar
-
 define fix_deps
 	@sed -i '1s:^$1:$@:' $2
 	@echo "" >> $2
@@ -56,29 +54,30 @@ endef
 # $2 ASFLAGS
 # $3 CPPFLAGS
 # $4 CFLAGS
+# $4 build deps
 define generate_build_rule
 
 ifeq ($(suffix $(1)),.s)
-$$(BUILD_DIR)/$(1).rel: $(1) $$(BUILD_DEPS)
+$$(BUILD_DIR)/$(1).rel: $(1) $(5) $(lastword $(MAKEFILE_LIST))
 	@echo Assembling $$(notdir $$@)...
 	@mkdir -p $$(dir $$@)
 	@$$(AS) $(2) $$@ $$<
 
-$$(BUILD_DIR)/$(1).debug.rel: $(1) $$(BUILD_DEPS)
+$$(BUILD_DIR)/$(1).debug.rel: $(1) $(5) $(lastword $(MAKEFILE_LIST))
 	@echo Assembling $$(notdir $$@)...
 	@mkdir -p $$(dir $$@)
 	@$$(AS) $(2) $$@ $$<
 endif
 
 ifeq ($(suffix $(1)),.c)
-$$(BUILD_DIR)/$(1).rel: $(1) $$(BUILD_DEPS)
+$$(BUILD_DIR)/$(1).rel: $(1) $(5) $(lastword $(MAKEFILE_LIST))
 	@echo Compiling $$(notdir $$@)...
 	@mkdir -p $$(dir $$@)
 	@$$(CC) $(3) $(4) -MM -c $$< -o $$(@:%.rel=%.d)
 	@$$(call fix_deps,$$(notdir $$(@:%.c.rel=%.rel)),$$(@:%.rel=%.d))
 	@$$(CC) $(3) $(4) -c $$< -o $$@
 
-$$(BUILD_DIR)/$(1)debug.rel: $(1) $$(BUILD_DEPS)
+$$(BUILD_DIR)/$(1)debug.rel: $(1) $(5) $(lastword $(MAKEFILE_LIST))
 	@echo Compiling $$(notdir $$@)...
 	@mkdir -p $$(dir $$@)
 	@$$(CC) $(3) $(4) -MM -c $$< -o $$(@:%.rel=%.d)
@@ -124,7 +123,14 @@ $$(BUILD_DIR)/$(1)-debug.lib: $$($1_DEBUG_LIB_OBJS)
 	@mkdir -p $$(dir $$@)
 	@$$(AR) -rc $$@ $$^
 
-$$(foreach _src,$$($(1)_LIB_SRCS),$$(eval $$(call generate_build_rule,$$(_src),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS),$$($(1)_CXXFLAGS))))
+$$(shell mkdir -p $$(BUILD_DIR)/$(1))
+$$(shell echo ASFLAGS $$($(1)_ASFLAGS) CPPFLAGS $$($(1)_CPPFLAGS) CFLAGS $$($(1)_CFLAGS) > $$(BUILD_DIR)/lib_$(1).build_deps.next)
+$$(shell diff $$(BUILD_DIR)/lib_$(1).build_deps.next $$(BUILD_DIR)/lib_$(1).build_deps > /dev/null 2>&1)
+ifneq ($$(.SHELLSTATUS),0)
+$$(shell mv $$(BUILD_DIR)/lib_$(1).build_deps.next $$(BUILD_DIR)/lib_$(1).build_deps)
+endif
+
+$$(foreach _src,$$($(1)_LIB_SRCS),$$(eval $$(call generate_build_rule,$$(_src),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS),$$(BUILD_DIR)/lib_$(1).build_deps)))
 
 endef
 
@@ -150,12 +156,19 @@ $(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS)
 	@$(call fix_deps,[^:]*,$@.d)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) --out-fmt-elf $(TARGET_DEBUG_ELF_DEPS) -o $@ $(DEBUG_LDLIBS)
 
-$(foreach _src,$(SRCS),$(eval $(call generate_build_rule,$(_src),$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(CXXFLAGS))))
+$(shell mkdir -p $(BUILD_DIR))
+$(shell echo ASFLAGS $(ASFLAGS) CPPFLAGS $(CPPFLAGS) CFLAGS $(CFLAGS) CXXFLAGS $(CXXFLAGS) > $(BUILD_DIR)/build_deps.next)
+$(shell diff $(BUILD_DIR)/build_deps.next $(BUILD_DIR)/build_deps > /dev/null 2>&1)
+ifneq ($(.SHELLSTATUS),0)
+$(shell mv $(BUILD_DIR)/build_deps.next $(BUILD_DIR)/build_deps)
+endif
+
+$(foreach _src,$(SRCS),$(eval $(call generate_build_rule,$(_src),$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_deps)))
 
 .PHONY: clean
 clean:
 	@echo Cleaning...
-	@$(RM) -rf $(BUILD_DIR)
+	@rm -rf $(BUILD_DIR)
 
 -include $(DEPS)
 -include $(BUILD_DIR)/$(TARGET).hex.d
