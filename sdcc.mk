@@ -56,7 +56,7 @@ endef
 # $2 ASFLAGS
 # $3 CPPFLAGS
 # $4 CFLAGS
-define generate_compilation_rule
+define generate_build_rule
 
 ifeq ($(suffix $(1)),.s)
 $$(BUILD_DIR)/$(1).rel: $(1) $$(BUILD_DEPS)
@@ -124,7 +124,7 @@ $$(BUILD_DIR)/$(1)-debug.lib: $$($1_DEBUG_LIB_OBJS)
 	@mkdir -p $$(dir $$@)
 	@$$(AR) -rc $$@ $$^
 
-$$(foreach _src,$$($(1)_LIB_SRCS),$$(eval $$(call generate_compilation_rule,$$(_src),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS),$$($(1)_CXXFLAGS))))
+$$(foreach _src,$$($(1)_LIB_SRCS),$$(eval $$(call generate_build_rule,$$(_src),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS),$$($(1)_CXXFLAGS))))
 
 endef
 
@@ -150,7 +150,7 @@ $(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS)
 	@$(call fix_deps,[^:]*,$@.d)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) --out-fmt-elf $(TARGET_DEBUG_ELF_DEPS) -o $@ $(DEBUG_LDLIBS)
 
-$(foreach _src,$(SRCS),$(eval $(call generate_compilation_rule,$(_src),$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(CXXFLAGS))))
+$(foreach _src,$(SRCS),$(eval $(call generate_build_rule,$(_src),$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(CXXFLAGS))))
 
 .PHONY: clean
 clean:
