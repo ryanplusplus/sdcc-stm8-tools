@@ -51,6 +51,14 @@ define fix_deps
 endef
 
 # $1 filename
+# $2 flags to capture
+define capture_build_flags
+$(shell mkdir -p $(dir $(1)))
+$(shell echo $(foreach flag,$(2),$(flag) $($(flag))) > $(1).next)
+$(shell if cmp -s $(1).next $(1); then rm $(1).next; else mv $(1).next $(1); fi)
+endef
+
+# $1 filename
 # $2 ASFLAGS
 # $3 CPPFLAGS
 # $4 CFLAGS
@@ -123,14 +131,9 @@ $$(BUILD_DIR)/$(1)-debug.lib: $$($1_DEBUG_LIB_OBJS)
 	@mkdir -p $$(dir $$@)
 	@$$(AR) -rc $$@ $$^
 
-$$(shell mkdir -p $$(BUILD_DIR)/$(1))
-$$(shell echo ASFLAGS $$($(1)_ASFLAGS) CPPFLAGS $$($(1)_CPPFLAGS) CFLAGS $$($(1)_CFLAGS) > $$(BUILD_DIR)/lib_$(1).build_deps.next)
-$$(shell diff $$(BUILD_DIR)/lib_$(1).build_deps.next $$(BUILD_DIR)/lib_$(1).build_deps > /dev/null 2>&1)
-ifneq ($$(.SHELLSTATUS),0)
-$$(shell mv $$(BUILD_DIR)/lib_$(1).build_deps.next $$(BUILD_DIR)/lib_$(1).build_deps)
-endif
+$$(call capture_build_flags,$$(BUILD_DIR)/lib_$(1).build_flags,$(1)_ASFLAGS $(1)_CPPFLAGS $(1)_CFLAGS $(1)_CXXFLAGS)
 
-$$(foreach _src,$$($(1)_LIB_SRCS),$$(eval $$(call generate_build_rule,$$(_src),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS),$$(BUILD_DIR)/lib_$(1).build_deps)))
+$$(foreach _src,$$($(1)_LIB_SRCS),$$(eval $$(call generate_build_rule,$$(_src),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS),$$(BUILD_DIR)/lib_$(1).build_flags)))
 
 endef
 
@@ -141,7 +144,7 @@ all: $(BUILD_DIR)/$(TARGET).hex
 $(foreach _lib,$(LIBS),$(eval $(call generate_lib,$(_lib))))
 
 TARGET_HEX_DEPS := $(MAIN) $(OBJS) $(LIBS_DEPS)
-$(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS) $(BUILD_DEPS)
+$(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS) $(BUILD_DEPS) $(BUILD_DIR)/build_flags
 	@echo Linking $(notdir $@)...
 	@mkdir -p $(dir $@)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) -MM --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@.d $(LDLIBS)
@@ -149,24 +152,19 @@ $(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS) $(BUILD_DEPS)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@ $(LDLIBS)
 
 TARGET_DEBUG_ELF_DEPS := $(MAIN) $(DEBUG_OBJS) $(DEBUG_LIBS_DEPS)
-$(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS)
+$(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS) $(BUILD_DIR)/build_flags
 	@echo Linking $(notdir $@)...
 	@mkdir -p $(dir $@)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) -MM --out-fmt-elf $(TARGET_DEBUG_ELF_DEPS) -o $@.d $(DEBUG_LDLIBS)
 	@$(call fix_deps,[^:]*,$@.d)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) --out-fmt-elf $(TARGET_DEBUG_ELF_DEPS) -o $@ $(DEBUG_LDLIBS)
 
-$(shell mkdir -p $(BUILD_DIR))
-$(shell echo ASFLAGS $(ASFLAGS) CPPFLAGS $(CPPFLAGS) CFLAGS $(CFLAGS) CXXFLAGS $(CXXFLAGS) > $(BUILD_DIR)/build_deps.next)
-$(shell diff $(BUILD_DIR)/build_deps.next $(BUILD_DIR)/build_deps > /dev/null 2>&1)
-ifneq ($(.SHELLSTATUS),0)
-$(shell mv $(BUILD_DIR)/build_deps.next $(BUILD_DIR)/build_deps)
-endif
+$(call capture_build_flags,$(BUILD_DIR)/build_flags,ASFLAGS CPPFLAGS CFLAGS CXXFLAGS)
 
-$(eval $(call generate_build_rule,%.s,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_deps))
-$(eval $(call generate_build_rule,%.S,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_deps))
-$(eval $(call generate_build_rule,%.c,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_deps))
-$(eval $(call generate_build_rule,%.cpp,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_deps))
+$(eval $(call generate_build_rule,%.s,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_flags))
+$(eval $(call generate_build_rule,%.S,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_flags))
+$(eval $(call generate_build_rule,%.c,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_flags))
+$(eval $(call generate_build_rule,%.cpp,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_flags))
 
 .PHONY: clean
 clean:
