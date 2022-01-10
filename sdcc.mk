@@ -119,7 +119,7 @@ $(1)_LIB_DEPS := $$($(1)_LIB_SRCS:%=$$(BUILD_DIR)/%.d)
 $(1)_DEBUG_LIB_OBJS := $$($(1)_LIB_SRCS:%=$$(BUILD_DIR)/%.debug.rel)
 $(1)_DEBUG_LIB_DEPS := $$($(1)_LIB_SRCS:%=$$(BUILD_DIR)/%.debug.d)
 
-DEPS := $(DEPS) $(1)_LIB_DEPS $(1)_DEBUG_LIB_DEPS
+DEPS := $(DEPS) $$($(1)_LIB_DEPS) $$($(1)_DEBUG_LIB_DEPS)
 
 $$(BUILD_DIR)/$(1).lib: $$($1_LIB_OBJS)
 	@echo Building $$(notdir $$@)...
