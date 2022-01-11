@@ -153,7 +153,7 @@ $(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS) $(BUILD_DEPS) $(BUILD_DIR)/hex_li
 	@$(call fix_deps,[^:]*,$@.d)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@ $(LDLIBS)
 
-$(call capture_flags,$(BUILD_DIR)/elf_link_flags,__sdcc_stm8_tools_bin_path CPPFLAGS LDFLAGS TARGET_DEBUG_ELF_DEPS DEBUG_LDLIBS)
+$(call capture_flags,$(BUILD_DIR)/debug_elf_link_flags,__sdcc_stm8_tools_bin_path CPPFLAGS LDFLAGS TARGET_DEBUG_ELF_DEPS DEBUG_LDLIBS)
 
 TARGET_DEBUG_ELF_DEPS := $(MAIN) $(DEBUG_OBJS) $(DEBUG_LIBS_DEPS)
 $(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS) $(BUILD_DIR)/debug_elf_link_flags
