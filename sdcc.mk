@@ -85,7 +85,7 @@ $$(BUILD_DIR)/$(1).rel: $(1) $(5) $(lastword $(MAKEFILE_LIST))
 	@$$(call fix_deps,$$(notdir $$(@:%.c.rel=%.rel)),$$(@:%.rel=%.d))
 	@$$(CC) $(3) $(4) -c $$< -o $$@
 
-$$(BUILD_DIR)/$(1)debug.rel: $(1) $(5) $(lastword $(MAKEFILE_LIST))
+$$(BUILD_DIR)/$(1).debug.rel: $(1) $(5) $(lastword $(MAKEFILE_LIST))
 	@echo Compiling $$(notdir $$@)...
 	@mkdir -p $$(dir $$@)
 	@$$(CC) $(3) $(4) -MM -c $$< -o $$(@:%.rel=%.d)
