@@ -62,7 +62,7 @@ endef
 # $2 ASFLAGS
 # $3 CPPFLAGS
 # $4 CFLAGS
-# $4 build deps
+# $5 build deps
 define generate_build_rule
 
 ifeq ($(suffix $(1)),.s)
