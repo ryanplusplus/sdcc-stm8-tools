@@ -11,6 +11,7 @@ endif
 
 SRCS := $(subst $(MAIN),,$(SRCS))
 
+SRCS := $(sort $(SRCS))
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.rel)
 DEPS := $(SRCS:%=$(BUILD_DIR)/%.d)
 
@@ -113,6 +114,7 @@ ifneq ($$($(1)_SRC_DIRS),)
 $(1)_LIB_SRCS += $$(shell find $$($(1)_SRC_DIRS) -maxdepth 1 -name *.cpp -or -name *.c -or -name *.s)
 endif
 
+$(1)_LIB_SRCS := $$(sort $$($(1)_LIB_SRCS))
 $(1)_LIB_OBJS := $$($(1)_LIB_SRCS:%=$$(BUILD_DIR)/%.rel)
 $(1)_LIB_DEPS := $$($(1)_LIB_SRCS:%=$$(BUILD_DIR)/%.d)
 
