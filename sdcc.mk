@@ -135,7 +135,7 @@ $$(BUILD_DIR)/$(1)-debug.lib: $$($1_DEBUG_LIB_OBJS)
 
 unused := $$(call capture_flags,$$(BUILD_DIR)/lib_$(1).build_flags,__sdcc_stm8_tools_bin_path $(1)_ASFLAGS $(1)_CPPFLAGS $(1)_CFLAGS $(1)_CXXFLAGS)
 
-unused := $$(foreach _src,$$($(1)_LIB_SRCS),$$(eval $$(call generate_build_rule,$$(_src),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS),$$(BUILD_DIR)/lib_$(1).build_flags)))
+$$(foreach _src,$$($(1)_LIB_SRCS),$$(eval $$(call generate_build_rule,$$(_src),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS),$$(BUILD_DIR)/lib_$(1).build_flags)))
 
 endef
 
@@ -167,7 +167,7 @@ $(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS) $(BUILD
 
 unused := $(call capture_flags,$(BUILD_DIR)/build_flags,__sdcc_stm8_tools_bin_path ASFLAGS CPPFLAGS CFLAGS CXXFLAGS)
 
-unused := $(foreach _src,$(SRCS),$(eval $(call generate_build_rule,$(_src),$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_flags)))
+$(foreach _src,$(SRCS),$(eval $(call generate_build_rule,$(_src),$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_flags)))
 
 .PHONY: clean
 clean:
