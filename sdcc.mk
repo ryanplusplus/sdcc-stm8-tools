@@ -133,9 +133,9 @@ $$(BUILD_DIR)/$(1)-debug.lib: $$($1_DEBUG_LIB_OBJS)
 	@mkdir -p $$(dir $$@)
 	@$$(AR) -rc $$@ $$^
 
-$$(call capture_flags,$$(BUILD_DIR)/lib_$(1).build_flags,__sdcc_stm8_tools_bin_path $(1)_ASFLAGS $(1)_CPPFLAGS $(1)_CFLAGS $(1)_CXXFLAGS)
+unused := $$(call capture_flags,$$(BUILD_DIR)/lib_$(1).build_flags,__sdcc_stm8_tools_bin_path $(1)_ASFLAGS $(1)_CPPFLAGS $(1)_CFLAGS $(1)_CXXFLAGS)
 
-$$(foreach _src,$$($(1)_LIB_SRCS),$$(eval $$(call generate_build_rule,$$(_src),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS),$$(BUILD_DIR)/lib_$(1).build_flags)))
+unused := $$(foreach _src,$$($(1)_LIB_SRCS),$$(eval $$(call generate_build_rule,$$(_src),$$($(1)_ASFLAGS),$$($(1)_CPPFLAGS),$$($(1)_CFLAGS),$$(BUILD_DIR)/lib_$(1).build_flags)))
 
 endef
 
@@ -145,7 +145,7 @@ all: $(BUILD_DIR)/$(TARGET).hex
 
 $(foreach _lib,$(LIBS),$(eval $(call generate_lib,$(_lib))))
 
-$(call capture_flags,$(BUILD_DIR)/hex_link_flags,__sdcc_stm8_tools_bin_path CPPFLAGS LDFLAGS TARGET_HEX_DEPS LDLIBS)
+unused := $(call capture_flags,$(BUILD_DIR)/hex_link_flags,__sdcc_stm8_tools_bin_path CPPFLAGS LDFLAGS TARGET_HEX_DEPS LDLIBS)
 
 TARGET_HEX_DEPS := $(MAIN) $(OBJS) $(LIBS_DEPS)
 $(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS) $(BUILD_DEPS) $(BUILD_DIR)/hex_link_flags
@@ -155,7 +155,7 @@ $(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS) $(BUILD_DEPS) $(BUILD_DIR)/hex_li
 	@$(call fix_deps,[^:]*,$@.d)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@ $(LDLIBS)
 
-$(call capture_flags,$(BUILD_DIR)/debug_elf_link_flags,__sdcc_stm8_tools_bin_path CPPFLAGS LDFLAGS TARGET_DEBUG_ELF_DEPS DEBUG_LDLIBS)
+unused := $(call capture_flags,$(BUILD_DIR)/debug_elf_link_flags,__sdcc_stm8_tools_bin_path CPPFLAGS LDFLAGS TARGET_DEBUG_ELF_DEPS DEBUG_LDLIBS)
 
 TARGET_DEBUG_ELF_DEPS := $(MAIN) $(DEBUG_OBJS) $(DEBUG_LIBS_DEPS)
 $(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS) $(BUILD_DIR)/debug_elf_link_flags
@@ -165,12 +165,9 @@ $(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS) $(BUILD
 	@$(call fix_deps,[^:]*,$@.d)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) --out-fmt-elf $(TARGET_DEBUG_ELF_DEPS) -o $@ $(DEBUG_LDLIBS)
 
-$(call capture_flags,$(BUILD_DIR)/build_flags,__sdcc_stm8_tools_bin_path ASFLAGS CPPFLAGS CFLAGS CXXFLAGS)
+unused := $(call capture_flags,$(BUILD_DIR)/build_flags,__sdcc_stm8_tools_bin_path ASFLAGS CPPFLAGS CFLAGS CXXFLAGS)
 
-$(eval $(call generate_build_rule,%.s,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_flags))
-$(eval $(call generate_build_rule,%.S,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_flags))
-$(eval $(call generate_build_rule,%.c,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_flags))
-$(eval $(call generate_build_rule,%.cpp,$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_flags))
+unused := $(foreach _src,$(SRCS),$(eval $(call generate_build_rule,$(_src),$(ASFLAGS),$(CPPFLAGS),$(CFLAGS),$(BUILD_DIR)/build_flags)))
 
 .PHONY: clean
 clean:
