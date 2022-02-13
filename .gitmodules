@@ -1,3 +1,6 @@
 [submodule "lib/stm8"]
 	path = lib/stm8
 	url = https://github.com/ryanplusplus/stm8s-header
+[submodule "utils"]
+	path = utils
+	url = https://github.com/ryanplusplus/build-tools-utils
