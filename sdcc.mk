@@ -145,9 +145,7 @@ $$(foreach _src,$$($1_LIB_SRCS),$$(eval $$(call generate_build_rule,$$(_src),$$(
 
 endef
 
-.PHONY: all
-all: $(BUILD_DIR)/$(TARGET).hex
-	@$(__sdcc_stm8_tools_path)size.sh $(BUILD_DIR)/$(TARGET).map
+size = @$(__sdcc_stm8_tools_path)size.sh $1
 
 $(foreach _lib,$(LIBS),$(eval $(call generate_lib,$(_lib),LIB)))
 $(foreach _lib,$(INTERFACE_LIBS),$(eval $(call generate_lib,$(_lib),INTERFACE_LIB)))
