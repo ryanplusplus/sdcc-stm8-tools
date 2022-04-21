@@ -150,9 +150,9 @@ size = @$(__sdcc_stm8_tools_path)size.sh $1
 $(foreach _lib,$(LIBS),$(eval $(call generate_lib,$(_lib),LIB)))
 $(foreach _lib,$(INTERFACE_LIBS),$(eval $(call generate_lib,$(_lib),INTERFACE_LIB)))
 
+TARGET_HEX_DEPS := $(MAIN) $(OBJS) $(LIBS_DEPS)
 unused := $(call capture_flags,$(BUILD_DIR)/hex_link_flags,__sdcc_stm8_tools_bin_path CPPFLAGS LDFLAGS TARGET_HEX_DEPS LDLIBS)
 
-TARGET_HEX_DEPS := $(MAIN) $(OBJS) $(LIBS_DEPS)
 $(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS) $(BUILD_DEPS) $(BUILD_DIR)/hex_link_flags
 	@echo Linking $(notdir $@)...
 	@mkdir -p $(dir $@)
@@ -160,9 +160,9 @@ $(BUILD_DIR)/$(TARGET).hex: $(TARGET_HEX_DEPS) $(BUILD_DEPS) $(BUILD_DIR)/hex_li
 	@$(call fix_deps,[^:]*,$@.d)
 	@$(LD) $(CPPFLAGS) $(LDFLAGS) --out-fmt-ihx $(TARGET_HEX_DEPS) -o $@ $(LDLIBS)
 
+TARGET_DEBUG_ELF_DEPS := $(MAIN) $(DEBUG_OBJS) $(DEBUG_LIBS_DEPS)
 unused := $(call capture_flags,$(BUILD_DIR)/debug_elf_link_flags,__sdcc_stm8_tools_bin_path CPPFLAGS LDFLAGS TARGET_DEBUG_ELF_DEPS DEBUG_LDLIBS)
 
-TARGET_DEBUG_ELF_DEPS := $(MAIN) $(DEBUG_OBJS) $(DEBUG_LIBS_DEPS)
 $(BUILD_DIR)/$(TARGET)-debug.elf: $(TARGET_DEBUG_ELF_DEPS) $(BUILD_DEPS) $(BUILD_DIR)/debug_elf_link_flags
 	@echo Linking $(notdir $@)...
 	@mkdir -p $(dir $@)
