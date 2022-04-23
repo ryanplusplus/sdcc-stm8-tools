@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>4.3 The Z80, Z180, Rabbit 2000, Rabbit 2000A, Rabbit 3000A, SM83 (GameBoy),
+eZ80 and TLCS-90 ports</TITLE>
+<META NAME="description" CONTENT="4.3 The Z80, Z180, Rabbit 2000, Rabbit 2000A, Rabbit 3000A, SM83 (GameBoy),
+eZ80 and TLCS-90 ports">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node129.html">
+<LINK REL="previous" HREF="node118.html">
+<LINK REL="next" HREF="node120.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node120.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node111.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node118.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1563"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1565"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node120.html">4.3.1 Startup Code</A>
+<B> Up:</B> <A
+ HREF="node111.html">4. Notes on supported</A>
+<B> Previous:</B> <A
+ HREF="node118.html">4.2 DS400 port</A>
+ &nbsp; <B>  <A ID="tex2html1564"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1566"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A ID="SECTION00530000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN> The Z80, Z180, Rabbit 2000, Rabbit 2000A, Rabbit 3000A, SM83 (GameBoy),
+eZ80 and TLCS-90 ports</A>
+</H1>
+
+<P>
+SDCC can target the Z80<A NAME="2902"></A>, Z180, eZ80 in Z80 mode, Rabbit
+2000, Rabbit 2000A, Rabbit 3000A and LR35902, the Sharp SM83 (used
+.e.g in the Nintendo GameBoy) sm83<A NAME="2903"></A>.
+
+<P>
+When a frame pointer is used, it resides in IX. Register A, B, C,
+D, E, H, L and IY are used as a temporary registers for holding variables.
+
+<P>
+When enabling optimizations using <SPAN  CLASS="texttt">--opt-code</SPAN> size and a
+sufficiently high value for <SPAN  CLASS="texttt">--max-allocs-per-node</SPAN> SDCC typically
+generates much better code for these architectures than many other
+compilers. A comparison of compilers for these architecture can be
+found at <kbd><A ID="tex2html65"
+  HREF="http://sdcc.sourceforge.net/wiki/index.php/Z80_code_size">http://sdcc.sourceforge.net/wiki/index.php/Z80_code_size</A></kbd>.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A ID="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A ID="tex2html1567"
+  HREF="node120.html"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Startup Code</A>
+<LI><A ID="tex2html1568"
+  HREF="node121.html"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Rabbit ports</A>
+<UL>
+<LI><A ID="tex2html1569"
+  HREF="node121.html#SECTION00532100000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">1</SPAN> Rabbit wait states</A>
+</UL>
+<BR>
+<LI><A ID="tex2html1570"
+  HREF="node122.html"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> Z80, Z180 and Z80N calling conventions</A>
+<UL>
+<LI><A ID="tex2html1571"
+  HREF="node122.html#SECTION00533100000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Z80 SDCC calling convention, version 1</A>
+<LI><A ID="tex2html1572"
+  HREF="node122.html#SECTION00533200000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Z80 SDCC calling convention, version 0</A>
+</UL>
+<BR>
+<LI><A ID="tex2html1573"
+  HREF="node123.html"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">4</SPAN> Rabbit 2000, Rabbit 2000A, Rabbit 3000A, eZ80 and TLCS-90 calling
+conventions</A>
+<UL>
+<LI><A ID="tex2html1574"
+  HREF="node123.html#SECTION00534100000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">1</SPAN> Rabbit SDCC calling convention, version 1</A>
+</UL>
+<BR>
+<LI><A ID="tex2html1575"
+  HREF="node124.html"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">5</SPAN> SM83 calling conventions</A>
+<UL>
+<LI><A ID="tex2html1576"
+  HREF="node124.html#SECTION00535100000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">1</SPAN> SM83 SDCC calling convention, version 1</A>
+<LI><A ID="tex2html1577"
+  HREF="node124.html#SECTION00535200000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">2</SPAN> SM83 SDCC calling convention, version 0</A>
+</UL>
+<BR>
+<LI><A ID="tex2html1578"
+  HREF="node125.html"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">6</SPAN> Small-C calling convention</A>
+<LI><A ID="tex2html1579"
+  HREF="node126.html"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">7</SPAN> Complex instructions</A>
+<LI><A ID="tex2html1580"
+  HREF="node127.html"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">8</SPAN> Unsafe reads</A>
+<LI><A ID="tex2html1581"
+  HREF="node128.html"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">9</SPAN> Z80 banked calls</A>
+</UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+
+</BODY>
+</HTML>

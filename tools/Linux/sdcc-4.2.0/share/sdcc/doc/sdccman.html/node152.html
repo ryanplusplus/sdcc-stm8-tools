@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>4.7.9 Libraries</TITLE>
+<META NAME="description" CONTENT="4.7.9 Libraries">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node153.html">
+<LINK REL="previous" HREF="node151.html">
+<LINK REL="next" HREF="node153.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node153.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node143.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node151.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1789"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1791"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node153.html">4.7.10 Adding New Devices</A>
+<B> Up:</B> <A
+ HREF="node143.html">4.7 The PIC16 port</A>
+<B> Previous:</B> <A
+ HREF="node151.html">4.7.8 Header Files</A>
+ &nbsp; <B>  <A ID="tex2html1790"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1792"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A ID="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A ID="tex2html1793"
+  HREF="node152.html#SECTION00579100000000000000">Building the libraries</A>
+<LI><A ID="tex2html1794"
+  HREF="node152.html#SECTION00579200000000000000">Output of float values via printf()</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A ID="SECTION00579000000000000000"></A><A ID="subsec:pic16Libraries"></A>
+<BR>
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">9</SPAN> Libraries
+</H2>
+
+<P>
+The libraries<A NAME="3252"></A> that PIC16<A NAME="3253"></A> port
+depends on are the microcontroller device libraries which contain
+the symbol definitions for the microcontroller special function registers.
+These libraries have the format pic18fxxxx.lib, where <SPAN  CLASS="textit">xxxx</SPAN>
+is the microcontroller identification number. The specific library
+is selected automatically by the compiler at link stage according
+to the selected device.
+
+<P>
+Libraries are created with gplib which is part of the gputils
+package <kbd><A ID="tex2html69"
+  HREF="http://sourceforge.net/projects/gputils">http://sourceforge.net/projects/gputils</A></kbd>.
+
+<P>
+
+<H3><A ID="SECTION00579100000000000000">
+Building the libraries</A>
+</H3>
+
+<P>
+Before using SDCC/pic16 there are some libraries that need to be compiled.
+This process is done automatically if gputils are found at SDCC's
+compile time. Should you require to rebuild the pic16 libraries manually
+(e.g. in order to enable output of float values<A NAME="3257"></A>
+via <SPAN  CLASS="texttt">printf()</SPAN>, see below), these are the steps required to
+do so under Linux or Mac OS X (cygwin might work as well, but is untested):
+
+<P>
+
+<DL class="COMPACT">
+<DT>
+<DD>cd&nbsp;device/lib/pic16
+
+<P>
+./configure.gnu
+
+<P>
+cd&nbsp;..
+
+<P>
+make&nbsp;model-pic16
+
+<P>
+su&nbsp;-c&nbsp;'make&nbsp;install'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;install&nbsp;the&nbsp;libraries,&nbsp;you&nbsp;need&nbsp;the&nbsp;root&nbsp;password
+
+<P>
+cd&nbsp;../..
+</DD>
+</DL>If you need to install the headers too, do:
+
+<P>
+
+<DL class="COMPACT">
+<DT>
+<DD>cd&nbsp;device/include
+
+<P>
+su&nbsp;-c&nbsp;'make&nbsp;install'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#&nbsp;install&nbsp;the&nbsp;headers,&nbsp;you&nbsp;need&nbsp;the&nbsp;root&nbsp;password
+</DD>
+</DL>
+<P>
+
+<H3><A ID="SECTION00579200000000000000">
+Output of float values via printf()</A>
+</H3>
+
+<P>
+The library is normally built without support for displaying float
+values, only &lt;NO FLOAT&gt;<A NAME="3264"></A><A NAME="3265"></A>
+will appear instead of the value. To change this, rebuild the library
+as stated above, but call <SPAN  CLASS="texttt">./configure.gnu --enable-floats
+</SPAN>instead of just <SPAN  CLASS="texttt">./configure.gnu</SPAN>. Also make sure that at
+least <SPAN  CLASS="texttt">libc/stdio/vfprintf.c</SPAN> is actually recompiled, e.g.
+by <SPAN  CLASS="texttt">touch</SPAN>ing it after the <SPAN  CLASS="texttt">configure</SPAN> run or deleting
+its <SPAN  CLASS="texttt">.o</SPAN> file.
+
+<P>
+The more common approach of compiling <SPAN  CLASS="texttt">vfprintf.c</SPAN> manually
+with <SPAN  CLASS="texttt">-DUSE_FLOATS=1</SPAN> should also work, but is untested.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A
+ HREF="node153.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node143.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node151.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1789"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1791"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node153.html">4.7.10 Adding New Devices</A>
+<B> Up:</B> <A
+ HREF="node143.html">4.7 The PIC16 port</A>
+<B> Previous:</B> <A
+ HREF="node151.html">4.7.8 Header Files</A>
+ &nbsp; <B>  <A ID="tex2html1790"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1792"
+  HREF="node219.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

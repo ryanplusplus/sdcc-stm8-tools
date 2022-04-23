@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>3.2.4 Projects with Additional Libraries</TITLE>
+<META NAME="description" CONTENT="3.2.4 Projects with Additional Libraries">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node51.html">
+<LINK REL="previous" HREF="node49.html">
+<LINK REL="next" HREF="node51.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node51.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node46.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node49.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1079"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1081"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node51.html">3.2.5 Using sdar to</A>
+<B> Up:</B> <A
+ HREF="node46.html">3.2 Compiling</A>
+<B> Previous:</B> <A
+ HREF="node49.html">3.2.3 Projects with Multiple</A>
+ &nbsp; <B>  <A ID="tex2html1080"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1082"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A ID="SECTION00424000000000000000"></A><A NAME="785"></A>
+<BR>
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>.<SPAN CLASS="arabic">4</SPAN> Projects with Additional Libraries
+</H2>
+
+<P>
+Some reusable routines may be compiled into a library, see the documentation
+for the assembler and linkage editor (which are in &lt;installdir&gt;/share/sdcc/doc)
+for how to create a <SPAN  CLASS="textit">.lib<A NAME="786"></A></SPAN> library file. Libraries
+created in this manner can be included in the command line. Make sure
+you include the -L &lt;library-path&gt; option to tell the linker where
+to look for these files if they are not in the current directory.
+Here is an example, assuming you have the source file <SPAN  CLASS="textit">foomain.c</SPAN>
+and a library <SPAN  CLASS="textit">foolib.lib</SPAN> in the directory <SPAN  CLASS="textit">mylib</SPAN> (if
+that is not the same as your current project):
+<BR>
+<BR><SPAN  CLASS="textsf"><SPAN  CLASS="textbf">sdcc foomain.c foolib.lib -L mylib</SPAN></SPAN>
+<BR><SPAN  CLASS="textsf"><SPAN  CLASS="textbf"></SPAN></SPAN>
+<BR>
+Note here that <SPAN  CLASS="textit">mylib</SPAN> must be an absolute path name.
+<BR>
+<BR>
+The most efficient way to use libraries is to keep separate modules
+in separate source files. The lib file now should name all the modules.rel<A NAME="793"></A>
+files. For an example see the standard library file <SPAN  CLASS="textit">libsdcc.lib</SPAN>
+in the directory &lt;installdir&gt;/share/lib/small.
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

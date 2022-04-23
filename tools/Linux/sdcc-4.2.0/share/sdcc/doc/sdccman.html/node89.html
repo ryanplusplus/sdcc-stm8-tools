@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>3.9.1 Critical Functions and Critical Statements</TITLE>
+<META NAME="description" CONTENT="3.9.1 Critical Functions and Critical Statements">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node90.html">
+<LINK REL="previous" HREF="node88.html">
+<LINK REL="next" HREF="node90.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node90.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node88.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node88.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1308"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1310"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node90.html">3.9.2 Enabling and Disabling</A>
+<B> Up:</B> <A
+ HREF="node88.html">3.9 Enabling and Disabling</A>
+<B> Previous:</B> <A
+ HREF="node88.html">3.9 Enabling and Disabling</A>
+ &nbsp; <B>  <A ID="tex2html1309"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1311"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A ID="SECTION00491000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">9</SPAN>.<SPAN CLASS="arabic">1</SPAN> Critical Functions and Critical Statements</A>
+</H2>
+
+<P>
+A special keyword may be associated with a block or a function declaring
+it as <SPAN  CLASS="textit">__critical</SPAN>. SDCC will generate code to disable all
+interrupts<A NAME="1723"></A> upon entry to a critical function and
+restore the interrupt enable to the previous state before returning.
+Nesting critical functions will need one additional byte on the stack<A NAME="1724"></A>
+for each call.
+<BLOCKQUOTE>
+<SPAN  CLASS="texttt">int foo () __critical<A NAME="1726"></A><A NAME="1727"></A></SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">{</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">&nbsp;&nbsp;&nbsp;&nbsp;...</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">&nbsp;&nbsp;&nbsp;&nbsp;...</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">}</SPAN>
+
+</BLOCKQUOTE>
+The critical attribute maybe used with other attributes like <SPAN  CLASS="textit">reentrant.</SPAN>
+<BR>
+The keyword <SPAN  CLASS="textit">__critical</SPAN> may also be used to disable interrupts
+more locally:
+<BLOCKQUOTE>
+<SPAN  CLASS="texttt">__critical{ i++; }</SPAN>
+
+</BLOCKQUOTE>
+More than one statement could have been included in the block.
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

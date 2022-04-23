@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>3.1.1 ISO C90 and ANSI C89</TITLE>
+<META NAME="description" CONTENT="3.1.1 ISO C90 and ANSI C89">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node40.html">
+<LINK REL="previous" HREF="node38.html">
+<LINK REL="next" HREF="node40.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node40.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node38.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node38.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1017"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1019"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node40.html">3.1.2 ISO C95</A>
+<B> Up:</B> <A
+ HREF="node38.html">3.1 Standard-Compliance</A>
+<B> Previous:</B> <A
+ HREF="node38.html">3.1 Standard-Compliance</A>
+ &nbsp; <B>  <A ID="tex2html1018"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1020"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A ID="SECTION00411000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> ISO C90 and ANSI C89</A>
+</H2>
+
+<P>
+Use <SPAN  CLASS="textbf">&mdash;std-c89<A NAME="605"></A></SPAN> to compile
+in this mode.
+
+<P>
+The latest publicly available version of the standard <SPAN  CLASS="textit">ISO/IEC
+9899 - Programming languages - C</SPAN> should be available at: <kbd><A ID="tex2html38"
+  HREF="http://www.open-std.org/jtc1/sc22/wg14/www/standards.html#9899">http://www.open-std.org/jtc1/sc22/wg14/www/standards.html#9899</A></kbd>.
+<BR>
+<P>
+Deviations from standard compliance:
+
+<UL>
+<LI>structures<A NAME="609"></A> and unions<A NAME="610"></A> cannot be passed
+as function parameters and cannot be a return value<A NAME="611"></A>
+from a function, e.g.:
+
+<P>
+<BLOCKQUOTE>
+<SPAN  CLASS="texttt">struct s { ... };</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt"><SPAN  CLASS="textbf">struct</SPAN></SPAN> <SPAN  CLASS="texttt">s foo1 (</SPAN><SPAN  CLASS="texttt"><SPAN  CLASS="textbf">struct</SPAN></SPAN>
+<SPAN  CLASS="texttt">s parms) /* invalid in SDCC although allowed in ANSI */</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">{</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">&nbsp;&nbsp;&nbsp;&nbsp;struct s rets;</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">&nbsp;&nbsp;&nbsp;&nbsp;...</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">&nbsp;&nbsp;&nbsp;&nbsp;return rets; /* is invalid in SDCC although allowed
+in ANSI */</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">}</SPAN>
+
+</BLOCKQUOTE>
+</LI>
+<LI>initialization of structure arrays must be fully braced.
+
+<P>
+<BLOCKQUOTE>
+<SPAN  CLASS="texttt">struct s { char x } a[] = {1, 2};&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/* invalid
+in SDCC */</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">struct s { char x } a[] = {{1}, {2}}; /* OK
+*/</SPAN>
+
+</BLOCKQUOTE>
+</LI>
+<LI>'double<A NAME="636"></A>' precision floating point <A NAME="637"></A>not
+supported. Instead a warning is emitted, and float is used instead.
+long double is not supported.
+</LI>
+<LI>Old K&amp;R style<A NAME="638"></A> function declarations are
+not supported.
+
+<P>
+<BLOCKQUOTE>
+<SPAN  CLASS="texttt">foo(i,j) /* this old style of function declarations */</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">int i,j; /* is valid in ANSI but not valid in SDCC */</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">{ </SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">&nbsp;&nbsp;&nbsp;&nbsp;... </SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">}</SPAN>
+
+</BLOCKQUOTE>
+</LI>
+</UL>
+Some features of this standard are not supported in some ports:
+
+<UL>
+<LI>Functions are not reentrant unless explicitly declared as such or
+<SPAN  CLASS="textbf"><SPAN  CLASS="texttt"><SPAN  CLASS="textbf">--</SPAN>stack-auto</SPAN></SPAN> is specified in the mcs51,
+ds390, hc08, s08, pdk13, pdk14 and pdk15 ports.
+</LI>
+</UL>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A
+ HREF="node40.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node38.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node38.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1017"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1019"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node40.html">3.1.2 ISO C95</A>
+<B> Up:</B> <A
+ HREF="node38.html">3.1 Standard-Compliance</A>
+<B> Previous:</B> <A
+ HREF="node38.html">3.1 Standard-Compliance</A>
+ &nbsp; <B>  <A ID="tex2html1018"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1020"
+  HREF="node219.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>4.6.6 Command-Line Options</TITLE>
+<META NAME="description" CONTENT="4.6.6 Command-Line Options">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node140.html">
+<LINK REL="previous" HREF="node138.html">
+<LINK REL="next" HREF="node140.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node140.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node133.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node138.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1692"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1694"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node140.html">4.6.7 Environment Variables</A>
+<B> Up:</B> <A
+ HREF="node133.html">4.6 The PIC14 port</A>
+<B> Previous:</B> <A
+ HREF="node138.html">4.6.5 Linking and Assembling</A>
+ &nbsp; <B>  <A ID="tex2html1693"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1695"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A ID="SECTION00566000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">6</SPAN> Command-Line Options</A>
+</H2>
+
+<P>
+Besides the switches common to all SDCC backends, the PIC14 port accepts
+the following options (for an updated list see sdcc &mdash;help):
+<DL>
+<DT><STRONG>&mdash;debug-xtra<A NAME="3022"></A></STRONG></DT>
+<DD>emit
+debug info in assembly output
+</DD>
+<DT><STRONG>&mdash;no-pcode-opt<A NAME="3023"></A></STRONG></DT>
+<DD>disable
+(slightly faulty) optimization on pCode
+</DD>
+<DT><STRONG>&mdash;stack-loc<A NAME="3024"></A></STRONG></DT>
+<DD>sets
+the lowest address of the argument passing stack (defaults to a suitably
+large shared databank to reduce BANKSEL overhead)
+</DD>
+<DT><STRONG>&mdash;stack-size<A NAME="3025"></A></STRONG></DT>
+<DD>sets
+the size if the argument passing stack (default: 16, minimum: 4)
+</DD>
+<DT><STRONG>&mdash;use-non-free<A NAME="3026"></A></STRONG></DT>
+<DD>make
+non-free device headers and libraries available in the compiler's
+search paths (implicit -I and -L options)
+</DD>
+<DT><STRONG>&mdash;no-extended-instructions</STRONG></DT>
+<DD>forbid use of the extended instruction
+set (e.g., ADDFSR)
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>4.7.16 Generic Pointers</TITLE>
+<META NAME="description" CONTENT="4.7.16 Generic Pointers">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node160.html">
+<LINK REL="previous" HREF="node158.html">
+<LINK REL="next" HREF="node160.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node160.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node143.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node158.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1819"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1821"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node160.html">4.7.17 Configuration Bits</A>
+<B> Up:</B> <A
+ HREF="node143.html">4.7 The PIC16 port</A>
+<B> Previous:</B> <A
+ HREF="node158.html">4.7.15 Interrupts</A>
+ &nbsp; <B>  <A ID="tex2html1820"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1822"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A ID="SECTION005716000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">16</SPAN> Generic Pointers</A>
+</H2>
+
+<P>
+Generic pointers are implemented in PIC16 port as 3-byte (24-bit)
+types. There are 3 types of generic pointers currently implemented
+data, code and eeprom pointers. They are differentiated by the value
+of the 7th and 6th bits of the upper byte:
+
+<P>
+<DIV class="CENTER">
+<TABLE class="PAD  BORDER" style="">
+<TR><TD CLASS="CENTER">pointer type</TD>
+<TD CLASS="CENTER">7th bit</TD>
+<TD CLASS="CENTER">6th bit</TD>
+<TD CLASS="CENTER">rest of the pointer</TD>
+<TD CLASS="LEFT">description</TD>
+</TR>
+<TR><TD CLASS="CENTER">data</TD>
+<TD CLASS="CENTER">1</TD>
+<TD CLASS="CENTER">0</TD>
+<TD CLASS="CENTER"><SPAN  CLASS="texttt"><SPAN  CLASS="textsl"><SPAN  CLASS="textit">uuuuuu uuuuxxxx xxxxxxxx</SPAN></SPAN></SPAN></TD>
+<TD CLASS="LEFT">a 12-bit data pointer in data RAM memory</TD>
+</TR>
+<TR><TD CLASS="CENTER">code</TD>
+<TD CLASS="CENTER">0</TD>
+<TD CLASS="CENTER">0</TD>
+<TD CLASS="CENTER"><SPAN  CLASS="texttt"><SPAN  CLASS="textsl"><SPAN  CLASS="textit">uxxxxx xxxxxxxx xxxxxxxx</SPAN></SPAN></SPAN></TD>
+<TD CLASS="LEFT">a 21-bit code pointer in FLASH memory</TD>
+</TR>
+<TR><TD CLASS="CENTER">eeprom</TD>
+<TD CLASS="CENTER">0</TD>
+<TD CLASS="CENTER">1</TD>
+<TD CLASS="CENTER"><SPAN  CLASS="texttt"><SPAN  CLASS="textsl"><SPAN  CLASS="textit">uuuuuu uuuuuuxx xxxxxxxx</SPAN></SPAN></SPAN></TD>
+<TD CLASS="LEFT">a 10-bit eeprom pointer in EEPROM memory</TD>
+</TR>
+<TR><TD CLASS="CENTER">(unimplemented)</TD>
+<TD CLASS="CENTER">1</TD>
+<TD CLASS="CENTER">1</TD>
+<TD CLASS="CENTER"><SPAN  CLASS="texttt"><SPAN  CLASS="textsl"><SPAN  CLASS="textit">xxxxxx xxxxxxxx xxxxxxxx</SPAN></SPAN></SPAN></TD>
+<TD CLASS="LEFT">unimplemented pointer type</TD>
+</TR>
+</TABLE>
+</DIV>
+<P>
+<DIV class="CENTER">
+</DIV>
+
+<P>
+Generic pointer are read and written with a set of library
+functions which read/write 1, 2, 3, 4 bytes.
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>4.3.3 Z80, Z180 and Z80N calling conventions</TITLE>
+<META NAME="description" CONTENT="4.3.3 Z80, Z180 and Z80N calling conventions">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node123.html">
+<LINK REL="previous" HREF="node121.html">
+<LINK REL="next" HREF="node123.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node123.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node119.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node121.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1591"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1593"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node123.html">4.3.4 Rabbit 2000, Rabbit</A>
+<B> Up:</B> <A
+ HREF="node119.html">4.3 The Z80, Z180,</A>
+<B> Previous:</B> <A
+ HREF="node121.html">4.3.2 Rabbit ports</A>
+ &nbsp; <B>  <A ID="tex2html1592"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1594"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A ID="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A ID="tex2html1595"
+  HREF="node122.html#SECTION00533100000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Z80 SDCC calling convention, version 1</A>
+<LI><A ID="tex2html1596"
+  HREF="node122.html#SECTION00533200000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Z80 SDCC calling convention, version 0</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A ID="SECTION00533000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN> Z80, Z180 and Z80N calling conventions</A>
+</H2>
+
+<P>
+The current default is the SDCC calling convention, version 1. Using
+the command-line option –sdcccall 0, the default can be changed to
+version 0. There are three other calling conventions supported, which
+can be specified using the keywords __smallc, __z88dk_fastcall
+and __z88dk_callee. They are primarily intended for compatibility
+with libraries written for other compilers. For __z88dk_fastcall,
+there may be only one parameter of at most 32 bits, which is passed
+the same way as the return value of __sdcccall(0). For __z88dk_callee,
+parameters are passed on the stack, but the stack is not adjusted
+for the parameters after the call (thus the callee has to do this
+instead). __z88dk_callee can be combined with __smallc.
+
+<P>
+
+<H3><A ID="SECTION00533100000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Z80 SDCC calling convention, version 1</A>
+</H3>
+
+<P>
+This calling convention can be chosen per function via __sdcccall(1).
+8-bit return values are passed in a, 16-bit values in de, 32-bit values
+in hlde. Larger return values are passed in memory in a location specified
+by the caller through a hidden pointer argument.
+
+<P>
+For functions that have variable arguments: All parameters are passed
+on the stack. The stack is not adjusted for the parameters by the
+callee (thus the caller has to do this instead).
+
+<P>
+<IMG STYLE="" SRC="img4.png"
+ ALT="\includegraphics{z80-arguments}">
+
+<P>
+For Functions that do not have variable arguments: The first parameter
+is passed in a if it has 8 bits. If it has 16 bits it is passed in
+hl. If it has 32 bits, it is passed in hlde. If the first parameter
+is in a, and the second has 8 bits, it is passed in l; if the first
+is passed in a or hl, and the second has 16 bits, it is passed in
+de; all other parameters are passed on the stack, right-to-left. If
+__z88dk_callee is not used, after the call, the stack parameters
+are cleaned up by the caller, with the following exceptions: functions
+that do not have variable arguments and return void or a type of at
+most 16 bits, or have both a first parameter of type float and a return
+value of type float.
+
+<P>
+
+<H3><A ID="SECTION00533200000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN> Z80 SDCC calling convention, version 0</A>
+</H3>
+
+<P>
+This calling convention can be chosen per function via __sdcccall(0).
+All parameters are passed on the stack, right-to-left. 8-bit return
+values are passed in l, 16-bit values in hl, 32-bit values in dehl.
+Except for the SM83, where 8-bit values are passed in e, 16-bit values
+in de, 32-bit values in hlde. Larger return values are passed in memory
+in a location specified by the caller through a hidden pointer argument.
+Unless __z88dk_callee is used, all stack parameters are cleaned
+up by the caller.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A
+ HREF="node123.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node119.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node121.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1591"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1593"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node123.html">4.3.4 Rabbit 2000, Rabbit</A>
+<B> Up:</B> <A
+ HREF="node119.html">4.3 The Z80, Z180,</A>
+<B> Previous:</B> <A
+ HREF="node121.html">4.3.2 Rabbit ports</A>
+ &nbsp; <B>  <A ID="tex2html1592"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1594"
+  HREF="node219.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

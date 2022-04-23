@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>4.6.9 Known Bugs</TITLE>
+<META NAME="description" CONTENT="4.6.9 Known Bugs">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="previous" HREF="node141.html">
+<LINK REL="next" HREF="node143.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node143.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node133.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node141.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1709"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1711"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node143.html">4.7 The PIC16 port</A>
+<B> Up:</B> <A
+ HREF="node133.html">4.6 The PIC14 port</A>
+<B> Previous:</B> <A
+ HREF="node141.html">4.6.8 The Library</A>
+ &nbsp; <B>  <A ID="tex2html1710"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1712"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A ID="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A ID="tex2html1713"
+  HREF="node142.html#SECTION00569100000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">9</SPAN>.<SPAN CLASS="arabic">1</SPAN> Function arguments</A>
+<LI><A ID="tex2html1714"
+  HREF="node142.html#SECTION00569200000000000000"><SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">9</SPAN>.<SPAN CLASS="arabic">2</SPAN> Regression tests fail</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A ID="SECTION00569000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">9</SPAN> Known Bugs</A>
+</H2>
+
+<P>
+
+<H3><A ID="SECTION00569100000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">9</SPAN>.<SPAN CLASS="arabic">1</SPAN> Function arguments</A>
+</H3>
+
+<P>
+Functions with variable argument lists (like printf) are not yet supported.
+Similarly, taking the address of the first argument passed into a
+function does not work: It is currently passed in WREG and has no
+address...
+
+<P>
+
+<H3><A ID="SECTION00569200000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">6</SPAN>.<SPAN CLASS="arabic">9</SPAN>.<SPAN CLASS="arabic">2</SPAN> Regression tests fail</A>
+</H3>
+
+<P>
+Though the small subset of regression tests in src/regression passes,
+SDCC regression test suite does not, indicating that there are still
+major bugs in the port. However, many smaller projects have successfully
+used SDCC in the past...
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

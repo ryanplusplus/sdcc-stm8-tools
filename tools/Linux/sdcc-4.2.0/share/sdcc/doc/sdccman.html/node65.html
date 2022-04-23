@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>3.3.13 Redirecting output on Windows Shells</TITLE>
+<META NAME="description" CONTENT="3.3.13 Redirecting output on Windows Shells">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="previous" HREF="node64.html">
+<LINK REL="next" HREF="node66.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node66.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node52.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node64.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1152"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1154"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node66.html">3.4 Environment variables</A>
+<B> Up:</B> <A
+ HREF="node52.html">3.3 Command Line Options</A>
+<B> Previous:</B> <A
+ HREF="node64.html">3.3.12 Intermediate Dump Options</A>
+ &nbsp; <B>  <A ID="tex2html1153"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1155"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A ID="SECTION004313000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">13</SPAN> Redirecting output on Windows Shells</A>
+</H2>
+
+<P>
+By default SDCC writes its error messages to &rdquo;standard error&rdquo;.
+To force all messages to &rdquo;standard output&rdquo; use <SPAN  CLASS="textbf">-</SPAN><SPAN  CLASS="textit"></SPAN><SPAN  CLASS="textbf">-</SPAN>use-stdout<A NAME="1187"></A>.
+Additionally, if you happen to have visual studio installed in your
+windows machine, you can use it to compile your sources using a custom
+build and the SDCC -<SPAN  CLASS="textit"></SPAN>-vc<A NAME="1189"></A> option. Something
+like this should work:
+<BR>
+<BR><SPAN  CLASS="textbf">c:\sdcc\bin\sdcc.exe
+-</SPAN><SPAN  CLASS="textit"></SPAN><SPAN  CLASS="textbf">-vc -</SPAN><SPAN  CLASS="textit"></SPAN><SPAN  CLASS="textbf">-model-large -c $(InputPath)</SPAN>
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

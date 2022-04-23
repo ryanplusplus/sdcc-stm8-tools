@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>4.7.8 Header Files</TITLE>
+<META NAME="description" CONTENT="4.7.8 Header Files">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node152.html">
+<LINK REL="previous" HREF="node150.html">
+<LINK REL="next" HREF="node152.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node152.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node143.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node150.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1785"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1787"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node152.html">4.7.9 Libraries</A>
+<B> Up:</B> <A
+ HREF="node143.html">4.7 The PIC16 port</A>
+<B> Previous:</B> <A
+ HREF="node150.html">4.7.7 Header Files and</A>
+ &nbsp; <B>  <A ID="tex2html1786"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1788"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A ID="SECTION00578000000000000000"></A><A ID="subsec:PIC16_Header-Files"></A>
+<BR>
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">8</SPAN> Header Files
+</H2>
+
+<P>
+There is one main header file<A NAME="3246"></A> that can
+be included to the source files using the pic16<A NAME="3247"></A> port.
+That file is the <SPAN  CLASS="textbf">pic18fregs.h</SPAN>. This header file contains
+the definitions for the processor special registers, so it is necessary
+if the source accesses them. It can be included by adding the following
+line in the beginning of the file:
+
+<P>
+
+<DL class="COMPACT">
+<DT>
+<DD>#include&nbsp;&lt;pic18fregs.h&gt;
+</DD>
+</DL>The specific microcontroller is selected within the pic18fregs.h automatically,
+so the same source can be used with a variety of devices.
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

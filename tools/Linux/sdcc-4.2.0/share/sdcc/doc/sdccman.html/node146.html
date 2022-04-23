@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>4.7.3 Environment Variables</TITLE>
+<META NAME="description" CONTENT="4.7.3 Environment Variables">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node147.html">
+<LINK REL="previous" HREF="node145.html">
+<LINK REL="next" HREF="node147.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node147.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node143.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node145.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1765"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1767"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node147.html">4.7.4 Preprocessor Macros</A>
+<B> Up:</B> <A
+ HREF="node143.html">4.7 The PIC16 port</A>
+<B> Previous:</B> <A
+ HREF="node145.html">4.7.2 Port Specific Options</A>
+ &nbsp; <B>  <A ID="tex2html1766"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1768"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A ID="SECTION00573000000000000000">
+<SPAN CLASS="arabic">4</SPAN>.<SPAN CLASS="arabic">7</SPAN>.<SPAN CLASS="arabic">3</SPAN> Environment Variables</A>
+</H2>
+
+<P>
+There is a number of environmental variables that can be used when
+running SDCC to enable certain optimizations or force a specific program
+behaviour. these variables are primarily for debugging purposes so
+they can be enabled/disabled at will.
+
+<P>
+Currently there is only two such variables available:
+<DL>
+<DT><STRONG>OPTIMIZE_BITFIELD_POINTER_GET<A NAME="3143"></A><A NAME="3144"></A></STRONG></DT>
+<DD>When
+this variable exists, reading of structure bit-fields is optimized
+by directly loading FSR0 with the address of the bit-field structure.
+Normally SDCC will cast the bit-field structure to a bit-field pointer
+and then load FSR0. This step saves data ram and code space for functions
+that make heavy use of bit-fields. (i.e., 80 bytes of code space are
+saved when compiling malloc.c with this option). 
+</DD>
+<DT><STRONG>NO_REG_OPT<A NAME="3145"></A><A NAME="3146"></A></STRONG></DT>
+<DD>Do
+not perform pCode registers optimization. This should be used for
+debugging purposes. If bugs in the pcode optimizer are found, users
+can benefit from temporarily disabling the optimizer until the bug
+is fixed.
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

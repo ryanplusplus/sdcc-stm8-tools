@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>3.11.1 Inline Assembler Code Formats</TITLE>
+<META NAME="description" CONTENT="3.11.1 Inline Assembler Code Formats">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node95.html">
+<LINK REL="previous" HREF="node93.html">
+<LINK REL="next" HREF="node95.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node95.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node93.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node93.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1334"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1336"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node95.html">3.11.2 A Step by</A>
+<B> Up:</B> <A
+ HREF="node93.html">3.11 Inline Assembler Code</A>
+<B> Previous:</B> <A
+ HREF="node93.html">3.11 Inline Assembler Code</A>
+ &nbsp; <B>  <A ID="tex2html1335"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1337"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A ID="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A ID="tex2html1338"
+  HREF="node94.html#SECTION004111100000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">11</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> Old __asm ... __endasm; Format</A>
+<LI><A ID="tex2html1339"
+  HREF="node94.html#SECTION004111200000000000000"><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">11</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN> New __asm__ (''inline_assembler_code'')
+Format</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A ID="SECTION004111000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">11</SPAN>.<SPAN CLASS="arabic">1</SPAN> Inline Assembler Code Formats</A>
+</H2>
+
+<P>
+SDCC supports two formats for inline assembler code definition:
+
+<P>
+
+<H3><A ID="SECTION004111100000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">11</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">1</SPAN> Old __asm ... __endasm; Format</A>
+</H3>
+
+<P>
+Most of inline assembler code examples in this manual use the old
+inline assembler code format, but the new format could be used equivalently.
+
+<P>
+Example:
+<BLOCKQUOTE>
+<SPAN  CLASS="texttt">__asm</SPAN>
+<BR><SPAN  CLASS="texttt">&nbsp;&nbsp;&nbsp;&nbsp;; This is a comment</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">&nbsp;&nbsp;&nbsp;&nbsp;label:</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nop</SPAN>&nbsp;
+<BR><SPAN  CLASS="texttt">__endasm;</SPAN>
+
+</BLOCKQUOTE>
+
+<P>
+
+<H3><A ID="SECTION004111200000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">11</SPAN>.<SPAN CLASS="arabic">1</SPAN>.<SPAN CLASS="arabic">2</SPAN> New __asm__ (''inline_assembler_code'')
+Format</A>
+</H3>
+
+<P>
+The __asm__ inline assembler code format was introduced in SDCC
+version 3.2.0.
+
+<P>
+Example:
+<BLOCKQUOTE>
+<SPAN  CLASS="texttt">__asm__ (&rdquo;; This is a comment\nlabel:\n\tnop&rdquo;);</SPAN>
+
+</BLOCKQUOTE>
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>3.3.1 Processor Selection Options</TITLE>
+<META NAME="description" CONTENT="3.3.1 Processor Selection Options">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="next" HREF="node54.html">
+<LINK REL="previous" HREF="node52.html">
+<LINK REL="next" HREF="node54.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node54.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node52.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node52.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1104"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1106"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node54.html">3.3.2 Preprocessor Options</A>
+<B> Up:</B> <A
+ HREF="node52.html">3.3 Command Line Options</A>
+<B> Previous:</B> <A
+ HREF="node52.html">3.3 Command Line Options</A>
+ &nbsp; <B>  <A ID="tex2html1105"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1107"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A ID="SECTION00431000000000000000"></A><A NAME="805"></A><A NAME="806"></A>
+<BR>
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN> Processor Selection Options
+</H2>
+
+<UL>
+<LI>[<SPAN  CLASS="textbf">-mmcs51<A NAME="809"></A></SPAN>] Generate code for the Intel
+MCS51<A NAME="810"></A> family of processors. This is the default processor
+target.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mds390<A NAME="811"></A></SPAN>] Generate code for the Dallas
+DS80C390<A NAME="812"></A> processor.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mds400<A NAME="813"></A></SPAN>] Generate code for the Dallas
+DS80C400<A NAME="814"></A> processor.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mhc08<A NAME="815"></A></SPAN>] Generate code for the Freescale/Motorola
+HC08 (aka 68HC08) <A NAME="816"></A> family of processors.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-ms08<A NAME="817"></A></SPAN>] Generate code for the Freescale/Motorola
+S08 (aka 68HCS08, HCS08, CS08) <A NAME="818"></A> family of processors.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mz80<A NAME="819"></A></SPAN>] Generate code for the Zilog Z80<A NAME="820"></A>
+family of processors.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mz180<A NAME="821"></A></SPAN>] Generate code for the Zilog Z180<A NAME="822"></A>
+family of processors.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mr2k<A NAME="823"></A></SPAN>] Generate code for the Rabbit 2000
+/ Rabbit 3000 family of processors.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mr3ka<A NAME="824"></A></SPAN>] Generate code for the Rabbit 3000A
+family of processors.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-msm83<A NAME="825"></A></SPAN>] Generate code for the Sharp SM83<A NAME="826"></A>
+processor.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mtlcs90<A NAME="827"></A></SPAN>] Generate code for the Toshiba
+TLCS-90 processor.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mez80_z80<A NAME="828"></A></SPAN>] Generate
+code for the Zilog eZ80 processor in Z80 mode.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mstm8<A NAME="829"></A></SPAN>] Generate code for the STMicroelectronics
+STM8 family of processors.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mpdk13<A NAME="830"></A></SPAN>] Generate code for Padauk processors
+with 13 bit wide program memory.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mpdk14<A NAME="831"></A></SPAN>] Generate code for Padauk processors
+with 14 bit wide program memory.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mpdk15<A NAME="832"></A></SPAN>] Generate code for Padauk processors
+with 15 bit wide program memory.
+</LI>
+<LI>[<SPAN  CLASS="textbf">-mpic14<A NAME="833"></A></SPAN>] Generate code for the Microchip
+PIC 14<A NAME="834"></A>-bit processors (p16f84 and variants. In development,
+not complete).
+</LI>
+</UL>
+<P>
+
+<UL>
+<LI>[<SPAN  CLASS="textbf">-mpic16<A NAME="838"></A></SPAN>] Generate code for the Microchip
+PIC 16<A NAME="839"></A>-bit processors (p18f452 and variants. In development,
+not complete).
+</LI>
+</UL>SDCC inspects the program name it was called with so the processor
+family can also be selected by renaming the sdcc binary (to f.e. z80-sdcc)
+or by calling SDCC from a suitable link. Option -m has higher priority
+than setting from program name.
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A
+ HREF="node54.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node52.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node52.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1104"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1106"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node54.html">3.3.2 Preprocessor Options</A>
+<B> Up:</B> <A
+ HREF="node52.html">3.3 Command Line Options</A>
+<B> Previous:</B> <A
+ HREF="node52.html">3.3 Command Line Options</A>
+ &nbsp; <B>  <A ID="tex2html1105"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1107"
+  HREF="node219.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

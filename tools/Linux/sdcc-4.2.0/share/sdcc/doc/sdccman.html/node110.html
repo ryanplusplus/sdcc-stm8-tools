@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>3.17 Defines Created by the Compiler</TITLE>
+<META NAME="description" CONTENT="3.17 Defines Created by the Compiler">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="previous" HREF="node109.html">
+<LINK REL="next" HREF="node111.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node111.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node37.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node109.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1421"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1423"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node111.html">4. Notes on supported</A>
+<B> Up:</B> <A
+ HREF="node37.html">3. Using SDCC</A>
+<B> Previous:</B> <A
+ HREF="node109.html">3.16 Pragmas</A>
+ &nbsp; <B>  <A ID="tex2html1422"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1424"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H1><A ID="SECTION004170000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">17</SPAN> Defines Created by the Compiler</A>
+</H1>
+
+<P>
+Besides defines from the C standards, the compiler creates the following
+#defines<A NAME="2424"></A><A NAME="2425"></A>:
+<BR>
+<P>
+<TABLE class="PAD  BORDER" style="">
+<TR><TH CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18067>
+<SPAN  CLASS="textbf">#define</SPAN> 
+</DIV></TH>
+<TH CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18069>
+<SPAN  CLASS="textbf">Description</SPAN>
+</DIV></TH>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18071>
+__SDCC<A NAME="2433"></A><A NAME="2434"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18073>
+Always defined. Version number string (e.g. SDCC_3_2_0 for sdcc
+3.2.0).
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18075>
+SDCC 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18077>
+OBSOLETE. WILL BE REMOVED IN THE FUTURE. CURRENTLY Only defined for
+the mcs51 backend (and only if –std-cXX is not used). This macro has
+been available since SDCC 2.5.6 and is the version number as an int
+(ex. 256). PLEASE USE OTHER VERSION MACROS INSTEAD!
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18079>
+__SDCC_mcs51<A NAME="2435"></A> or
+__SDCC_ds390<A NAME="2436"></A> or
+__SDCC_z80<A NAME="2437"></A>, etc. 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18081>
+depending on the model used (e.g.: -mds390). Older versions used SDCC_mcs51,
+etc instead.
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18083>
+__SDCC_STACK_AUTO<A NAME="2438"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18085>
+when <SPAN  CLASS="textit">&mdash;stack-auto</SPAN> option is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18087>
+__SDCC_MODEL_SMALL<A NAME="2440"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18089>
+when <SPAN  CLASS="textit">&mdash;model-small</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18091>
+__SDCC_MODEL_MEDIUM<A NAME="2442"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18093>
+when <SPAN  CLASS="textit">&mdash;model-medium</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18095>
+__SDCC_MODEL_LARGE<A NAME="2444"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18097>
+when <SPAN  CLASS="textit">&mdash;model-large</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18099>
+__SDCC_MODEL_HUGE<A NAME="2446"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18101>
+when <SPAN  CLASS="textit">&mdash;model-huge</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18103>
+__SDCC_USE_XSTACK<A NAME="2448"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18105>
+when <SPAN  CLASS="textit">&mdash;xstack</SPAN> option is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18107>
+__SDCC_STACK_TENBIT<A NAME="2450"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18109>
+when <SPAN  CLASS="textit">-mds390</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18111>
+__SDCC_MODEL_FLAT24<A NAME="2452"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18113>
+when <SPAN  CLASS="textit">-mds390</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18115>
+__SDCC_VERSION_MAJOR 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18117>
+Always defined. SDCC major version number. E.g. 3 for SDCC 3.5.0
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18119>
+__SDCC_VERSION_MINOR 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18121>
+Always defined. SDCC minor version number. E.g. 5 for SDCC 3.5.0
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18123>
+__SDCC_VERSION_PATCH 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18125>
+Always defined. SDCC patchlevel version number. E.g. 0 for SDCC 3.5.0
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18127>
+__SDCC_REVISION<A NAME="2454"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18129>
+Always defined. SDCC svn revision number. Older versions of sdcc used
+SDCC_REVISION instead.
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18131>
+SDCC_PARMS_IN_BANK1<A NAME="2455"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18133>
+when <SPAN  CLASS="textit">&mdash;parms-in-bank1</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18135>
+__SDCC_ALL_CALLEE_SAVES<A NAME="2457"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18137>
+when <SPAN  CLASS="textit">&mdash;all-callee-saves</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18139>
+__SDCC_FLOAT_REENT<A NAME="2459"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18141>
+when <SPAN  CLASS="textit">&mdash;float-reent</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18143>
+__SDCC_INT_LONG_REENT<A NAME="2461"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18145>
+when <SPAN  CLASS="textit">&mdash;int-long-reent</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18147>
+__SDCC_OPTIMIZE_SPEED<A NAME="2463"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18149>
+when <SPAN  CLASS="textit">&mdash;opt-code-speed</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18151>
+__SDCC_OPTIMIZE_SIZE<A NAME="2465"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18153>
+when <SPAN  CLASS="textit">&mdash;opt-code-size</SPAN> is used
+</DIV></TD>
+</TR>
+<TR><TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18155>
+__SDCCCALL<A NAME="2467"></A> 
+</DIV></TD>
+<TD CLASS="LEFT TOP"  WIDTH=216>
+<DIV class="LEFT"18157>
+Default ABI version for calling convention
+</DIV></TD>
+</TR>
+</TABLE>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A
+ HREF="node111.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node37.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node109.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1421"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1423"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node111.html">4. Notes on supported</A>
+<B> Up:</B> <A
+ HREF="node37.html">3. Using SDCC</A>
+<B> Previous:</B> <A
+ HREF="node109.html">3.16 Pragmas</A>
+ &nbsp; <B>  <A ID="tex2html1422"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1424"
+  HREF="node219.html">Index</A></B> </DIV>
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

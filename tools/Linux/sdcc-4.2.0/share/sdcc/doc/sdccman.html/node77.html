@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+
+<!--Converted with LaTeX2HTML 2020.2 (Released July 1, 2020) -->
+<HTML lang="en">
+<HEAD>
+<TITLE>3.5.10 Omitting promotion on arguments of vararg function (does not apply
+to pdk13, pdk14, pdk15)</TITLE>
+<META NAME="description" CONTENT="3.5.10 Omitting promotion on arguments of vararg function (does not apply
+to pdk13, pdk14, pdk15)">
+<META NAME="keywords" CONTENT="sdccman">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1.0">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2020.2">
+
+<LINK REL="STYLESHEET" HREF="sdccman.css">
+
+<LINK REL="previous" HREF="node76.html">
+<LINK REL="next" HREF="node78.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A
+ HREF="node78.html">
+<IMG WIDTH="37" HEIGHT="24" ALT="next" SRC="next.png"></A> 
+<A
+ HREF="node67.html">
+<IMG WIDTH="26" HEIGHT="24" ALT="up" SRC="up.png"></A> 
+<A
+ HREF="node76.html">
+<IMG WIDTH="63" HEIGHT="24" ALT="previous" SRC="prev.png"></A> 
+<A ID="tex2html1242"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALT="contents" SRC="contents.png"></A> 
+<A ID="tex2html1244"
+  HREF="node219.html">
+<IMG WIDTH="43" HEIGHT="24" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A
+ HREF="node78.html">3.6 Parameters and Local</A>
+<B> Up:</B> <A
+ HREF="node67.html">3.5 SDCC Language Extensions</A>
+<B> Previous:</B> <A
+ HREF="node76.html">3.5.9 Returning void</A>
+ &nbsp; <B>  <A ID="tex2html1243"
+  HREF="node1.html">Contents</A></B> 
+ &nbsp; <B>  <A ID="tex2html1245"
+  HREF="node219.html">Index</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+
+<H2><A ID="SECTION004510000000000000000">
+<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">5</SPAN>.<SPAN CLASS="arabic">10</SPAN> Omitting promotion on arguments of vararg function (does not apply
+to pdk13, pdk14, pdk15)</A>
+</H2>
+
+<P>
+Arguments to vararg functions are not promoted when explicitly cast.
+This feature is only enabled when the compiler is invoked using <SPAN  CLASS="texttt">--std-sdccxx</SPAN>.
+This breaks compability with the C standards, so linking code compiled
+with <SPAN  CLASS="texttt">--std-sdccxx</SPAN> with code compiled using <SPAN  CLASS="texttt">--std-cxx</SPAN>
+can result in failing programs when arguments to vararg functions
+are explicitly cast.
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>
