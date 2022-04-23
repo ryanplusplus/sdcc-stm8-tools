@@ -6,6 +6,10 @@ $(BUILD_DIR)/stm8-objdump:
 	@mkdir -p $(dir $@)
 	@-ln -s $(__sdcc_stm8_tools_binutils_path)/stm8-objdump $@
 
+$(BUILD_DIR)/stm8-nm:
+	@mkdir -p $(dir $@)
+	@-ln -s $(__sdcc_stm8_tools_binutils_path)/stm8-nm $@
+
 $(BUILD_DIR)/openocd:
 	@mkdir -p $(dir $@)
 	@-ln -s $(__sdcc_stm8_tools_openocd_path) $@
@@ -30,6 +34,7 @@ debug-deps: \
 	$(BUILD_DIR)/$(TARGET)-debug.elf \
 	$(BUILD_DIR)/stm8-gdb \
 	$(BUILD_DIR)/stm8-objdump \
+	$(BUILD_DIR)/stm8-nm \
 	$(BUILD_DIR)/openocd \
 	$(BUILD_DIR)/openocd.cfg \
 	$(BUILD_DIR)/$(TARGET).svd
