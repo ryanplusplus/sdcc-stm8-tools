@@ -14,7 +14,7 @@ $(BUILD_DIR)/openocd:
 	@mkdir -p $(dir $@)
 	@-ln -s $(__sdcc_stm8_tools_openocd_path) $@
 
-$(BUILD_DIR)/openocd.cfg: $(BUILD_DEPS)
+$(BUILD_DIR)/openocd.cfg: $(OPENOCD_CFG) $(BUILD_DEPS)
 	@cp $(OPENOCD_CFG) $@
 
 ifdef SVD
