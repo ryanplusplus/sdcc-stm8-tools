@@ -21,3 +21,7 @@ LDFLAGS := \
 
 DEFINES += \
   $(DEVICE_TYPE)
+
+ifeq ($(TOOLCHAIN_VERSION),4.2.0)
+CFLAGS += --no-peep --peep-file $(call current_path)patch/4.2.0-patched-peeph.def
+endif
